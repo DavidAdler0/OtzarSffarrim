@@ -1,0 +1,88 @@
+﻿@model OtzarSffarrim.Models.Book
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BookName" class="control-label"></label>
+                <input asp-for="BookName" class="form-control" />
+                <span asp-validation-for="BookName" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="BookCategory" class="control-label"></label>
+                    <select asp-for="BookCategory" class="form-control" asp-items="ViewBag.Categories"></select>
+                </div>
+@*                </div>
+               <div class="form-group">
+                   <label asp-for="Book.BookCategory" class="control-label"></label>
+                   <input asp-for="Book.ookCategory" class="form-control" />
+                   <span asp-validation-for="bookcategory" class="text-danger"></span>
+               </div> *@
+                @if (ViewData["WidthError"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["WidthError"]
+                    </div>
+                    @* TempData["ErrorMessage"] = null; *@
+                }
+            <div class="form-group">
+                <label asp-for="Width" class="control-label"></label>
+                <input asp-for="Width" class="form-control" />
+                <span asp-validation-for="Width" class="text-danger"></span>
+            </div>
+                @if (ViewData["HeightError"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["HeightError"]
+                    </div>
+
+                }
+            <div class="form-group">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+                @if (ViewData["CategoryError"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["CategoryError"]
+                    </div>
+                }
+ 
+            <div class="form-group">
+                <label asp-for="ShelfId" class="control-label"></label>
+                <select asp-for="ShelfId" class ="form-control" asp-items="ViewBag.ShelfId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script>
+    function confirmAction() {
+        var userConfirmed = confirm("האם אתה בטוח שברצונך לבצע פעולה זו?");
+        if (userConfirmed) {
+            alert("הפעולה התבצעה בהצלחה!");
+            // כאן אתה יכול לכתוב את הקוד לביצוע הפעולה
+        } else {
+            alert("הפעולה בוטלה.");
+        }
+    }
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
